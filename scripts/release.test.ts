@@ -90,8 +90,8 @@ if (command === "git") {
   }
   if (args[0] === "tag" && args.length === 3 && !Object.hasOwn(state.tags, args[1])) { state.tags[args[1]] = args[2]; save(); process.exit(0); }
 }
-if (command === "bun" && (args.join(" ") === "publish --dry-run" || args.join(" ") === "publish --access public")) {
-  if (args[1] === "--dry-run") process.exit(0);
+if (command === "bun" && args.join(" ") === "pm pack --dry-run") process.exit(0);
+if (command === "bun" && args.join(" ") === "publish --access public") {
   if (state.publishFailures > 0) { state.publishFailures--; save(); console.error("simulated publication failure"); process.exit(1); }
   const manifest = JSON.parse(readFileSync("package.json", "utf8"));
   state.registry[manifest.name + "@" + manifest.version] = "published"; save(); process.exit(0);
@@ -127,7 +127,7 @@ test("dry-run packs every public package without registry lookup or Git access",
 		async ({ invoke, commands }) => {
 			const result = invoke(true);
 			expect(result.status, String(result.stderr)).toBe(0);
-			expect(await commands()).toEqual(["bun publish --dry-run", "bun publish --dry-run"]);
+			expect(await commands()).toEqual(["bun pm pack --dry-run", "bun pm pack --dry-run"]);
 			expect(result.stdout).toContain("dry run a@0.1.0: packed, not published");
 			expect(result.stdout).toContain("dry run b@0.1.0: packed, not published");
 			expect(result.stdout).not.toContain("private@0.1.0");

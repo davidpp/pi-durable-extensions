@@ -63,7 +63,8 @@ for (const entry of await readdir(join(root, "packages"))) {
 
 if (dryRun) {
 	for (const { directory, label } of packages) {
-		await $`bun publish --dry-run`.cwd(directory);
+		// `bun publish --dry-run` requires npm credentials; packing runs the same prepack build without them.
+		await $`bun pm pack --dry-run`.cwd(directory);
 		console.log(`dry run ${label}: packed, not published`);
 	}
 } else {
