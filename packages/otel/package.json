@@ -1,0 +1,50 @@
+{
+	"name": "pi-durable-otel",
+	"version": "0.1.0",
+	"description": "Read-only Pi Durable SQLite to OpenTelemetry GenAI traces",
+	"type": "module",
+	"license": "MIT",
+	"author": "David Paquet",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/davidpp/pi-durable-extensions.git",
+		"directory": "packages/otel"
+	},
+	"homepage": "https://github.com/davidpp/pi-durable-extensions/tree/main/packages/otel#readme",
+	"bugs": "https://github.com/davidpp/pi-durable-extensions/issues",
+	"engines": {
+		"node": ">=24.21.0"
+	},
+	"keywords": [
+		"pi",
+		"pi-durable",
+		"opentelemetry",
+		"genai"
+	],
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
+		}
+	},
+	"bin": {
+		"pi-durable-otel": "./dist/cli.js"
+	},
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "tsc -p tsconfig.build.json",
+		"typecheck": "tsc -p .",
+		"prepack": "bun run build"
+	},
+	"peerDependencies": {
+		"@earendil-works/pi-ai": ">=1.0.2 <1.1.0",
+		"@earendil-works/pi-durable": ">=1.0.2 <1.1.0"
+	},
+	"devDependencies": {
+		"@earendil-works/chord": "1.0.2",
+		"@earendil-works/pi-ai": "1.0.2",
+		"@earendil-works/pi-durable": "1.0.2"
+	}
+}

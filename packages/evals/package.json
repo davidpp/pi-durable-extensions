@@ -1,0 +1,50 @@
+{
+	"name": "pi-durable-evals",
+	"version": "0.3.0",
+	"description": "vitest-evals harness adapter for Pi Durable: each eval case is a durable conversation",
+	"type": "module",
+	"license": "MIT",
+	"author": "David Paquet",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/davidpp/pi-durable-extensions.git",
+		"directory": "packages/evals"
+	},
+	"homepage": "https://github.com/davidpp/pi-durable-extensions/tree/main/packages/evals#readme",
+	"bugs": "https://github.com/davidpp/pi-durable-extensions/issues",
+	"keywords": [
+		"pi",
+		"pi-durable",
+		"evals",
+		"vitest-evals"
+	],
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
+		}
+	},
+	"files": [
+		"dist"
+	],
+	"bin": {
+		"pi-durable-evals": "./dist/cli.js"
+	},
+	"scripts": {
+		"build": "tsc -p tsconfig.build.json",
+		"typecheck": "tsc -p .",
+		"prepack": "bun run build"
+	},
+	"peerDependencies": {
+		"@earendil-works/chord": ">=1.0.2 <1.1.0",
+		"@earendil-works/pi-ai": ">=1.0.2 <1.1.0",
+		"@earendil-works/pi-durable": ">=1.0.2 <1.1.0",
+		"vitest-evals": "~0.17.0"
+	},
+	"devDependencies": {
+		"@earendil-works/chord": "1.0.2",
+		"@earendil-works/pi-ai": "1.0.2",
+		"@earendil-works/pi-durable": "1.0.2",
+		"vitest-evals": "0.17.0"
+	}
+}

@@ -1,0 +1,36 @@
+{
+	"name": "pi-durable-extensions",
+	"private": true,
+	"type": "module",
+	"description": "Small, composable extensions for Pi Durable",
+	"license": "MIT",
+	"workspaces": [
+		"packages/*"
+	],
+	"scripts": {
+		"prepare": "lefthook install",
+		"check": "bun run lint && bun run fmt:check && bun run quality",
+		"fix": "oxlint --fix && oxfmt",
+		"lint": "oxlint && oxlint --type-aware --config .oxlintrc.typed.json",
+		"fmt": "oxfmt",
+		"fmt:check": "oxfmt --check",
+		"knip": "knip-bun",
+		"duplicates": "jscpd --config .jscpd.json --no-tips packages scripts",
+		"quality": "bun run knip && bun run duplicates",
+		"typecheck": "bun run --filter '*' typecheck && tsc -p scripts",
+		"test": "vitest run",
+		"release": "bun scripts/release.ts"
+	},
+	"devDependencies": {
+		"@types/bun": "1.4.2",
+		"@types/node": "26.6.4",
+		"jscpd": "5.4.0",
+		"knip": "6.39.0",
+		"lefthook": "2.1.16",
+		"oxfmt": "0.71.0",
+		"oxlint": "1.86.0",
+		"oxlint-tsgolint": "7.0.2003",
+		"typescript": "7.0.2",
+		"vitest": "4.1.11"
+	}
+}

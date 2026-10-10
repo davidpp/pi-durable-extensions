@@ -1,0 +1,20 @@
+pre-commit:
+  parallel: true
+  jobs:
+    - name: format
+      glob: "*.{js,ts,mjs,json,jsonc}"
+      run: bunx oxfmt --no-error-on-unmatched-pattern {staged_files}
+      stage_fixed: true
+
+    - name: lint
+      glob: "*.ts"
+      run: bunx oxlint {staged_files} && bunx oxlint --type-aware --config .oxlintrc.typed.json {staged_files}
+
+    - name: typecheck
+      glob: "*.ts"
+      run: bun run typecheck
+
+pre-push:
+  jobs:
+    - name: gate
+      run: bun run check && bun run typecheck && bun run test

@@ -1,0 +1,9 @@
+{
+	"threshold": 0.5,
+	"reporters": ["console"],
+	"minLines": 10,
+	"minTokens": 80,
+	"mode": "weak",
+	"formats": ["typescript"],
+	"ignore": ["**/*.test.ts", "**/node_modules/**", "**/dist/**"]
+}
